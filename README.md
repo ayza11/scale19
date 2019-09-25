@@ -24,14 +24,15 @@
 * Скачайте файлы [kms-encrypt.sh](./kms-encrypt.sh) и [kms-decrypt.sh](./kms-decrypt.sh) и сохраните их на локальный диск рабочей станции. Это скрипты, которые взаимодействуют по HTTP с YC KMS data plane REST API.
 * Откройте terminal, перейдите в каталог с сохранёнными файлами
 * Придумайте какой-то секретный текст, например: "Атакуем на рассвете"
-* Для получчения шифротекст данного сообщения, зашифрованный на вашем ключе KMS, выполните следующие команды:
+* Для шифрования данного текста на вашем ключе KMS, выполните следующие команды:
 ```
 echo "Атакуем на рассвете" > secret_plaintext.txt
 ./kms_encrypt.sh fve71roc3v3v1o7fee00 "foo=bar" `cat secret_plaintext.txt | base64` > ciphertext.txt
 ```
 * Замечания:
   * Вместо id `fve71roc3v3v1o7fee00` нужно поставить свой id ключа, получечнного в разделе "Создание ключа симметричного шифрования"
-  * Фраза `foo=bar` является [Additional Authenticated Data](https://cloud.google.com/kms/docs/additional-authenticated-data) для алгоритма шифрования AES GCM. Это фраза не является секретной, но для расшифрования шифротекста фразу надо передать на вход алгоритма в том же неизменном виде, в каком она была передана алгоритму шифрования
+  * Фраза `foo=bar` является [Additional Authenticated Data (поменять на ссылку на нашу доку)](https://cloud.google.com/kms/docs/additional-authenticated-data) для алгоритма шифрования AES GCM. Это фраза не является секретной, но для расшифрования шифротекста фразу надо передать на вход алгоритма в том же неизменном виде, в каком она была передана алгоритму шифрования
+  * Длина plaintext для операций c KMS ecnrypt/decrypt API не должна превышать 32K. Для шифрования данных большего объёма рекомендуется применять схему [envelope encryption (поменять на ссылку на нашу доку)](https://cloud.google.com/kms/docs/envelope-encryption) 
 * Изучаем содержимое файла `ciphertext.txt`, в нём содержится шифротекст в кодировке BASE64. В файле должно располагаться что-то вроде такого: `AAAAAAAAABRmdmVob29zdGt2M3FidWhpNTZsZgAAAAzXpgRC6vIcqrGaYMQAAAAbattM/9piFG8qUMed0GTgiG1OJRIJaHI1Nraw235mUCC90ISZQldXsFYugQ==`
 * Для расшифрования шифротекста выполняем следующие команды:
 ```
