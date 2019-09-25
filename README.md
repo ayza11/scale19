@@ -23,7 +23,7 @@
 
 ### Работа c KMS encrypt/decrypt API
 * Скачайте файлы [kms-encrypt.sh](./kms-encrypt.sh),
-  [kms-decrypt.sh](./kms-decrypt.sh), [kms-client.sh](./kms-client.sh) и сохраните их на локальный диск рабочей станции. Это скрипты, которые взаимодействуют по HTTP с YC KMS data plane REST API.
+  [kms-decrypt.sh](./kms-decrypt.sh), [kms-client.sh](./kms-client.sh) и сохраните их на локальный диск рабочей станции. Это скрипты, которые взаимодействуют KMS data plane API по HTTP.
 * Откройте terminal, перейдите в каталог с сохранёнными файлами
 * Придумайте какой-то секретный текст, например: "Атакуем на рассвете"
 * Для шифрования данного текста на вашем ключе KMS, выполните следующие команды:
