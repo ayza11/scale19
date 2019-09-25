@@ -26,8 +26,8 @@
 * Придумайте какой-то секретный текст, например: "Атакуем на рассвете"
 * Для шифрования данного текста на вашем ключе KMS, выполните следующие команды:
 ```
-echo "Атакуем на рассвете" > secret_plaintext.txt
-./kms_encrypt.sh fve71roc3v3v1o7fee00 "foo=bar" `cat secret_plaintext.txt | base64` > ciphertext.txt
+echo "Атакуем на рассвете" > plaintext.txt
+./kms-encrypt.sh fve71roc3v3v1o7fee00 "foo=bar" `cat plaintext.txt | base64` > ciphertext.txt
 ```
 * Замечания:
   * Вместо id `fve71roc3v3v1o7fee00` нужно поставить свой id ключа, получечнного в разделе "Создание ключа симметричного шифрования"
@@ -36,7 +36,7 @@ echo "Атакуем на рассвете" > secret_plaintext.txt
 * Изучаем содержимое файла `ciphertext.txt`, в нём содержится шифротекст в кодировке BASE64. В файле должно располагаться что-то вроде такого: `AAAAAAAAABRmdmVob29zdGt2M3FidWhpNTZsZgAAAAzXpgRC6vIcqrGaYMQAAAAbattM/9piFG8qUMed0GTgiG1OJRIJaHI1Nraw235mUCC90ISZQldXsFYugQ==`
 * Для расшифрования шифротекста выполняем следующие команды:
 ```
-./kms_decrypt.sh fve71roc3v3v1o7fee00 "foo=bar" `cat ciphertext.txt` | base64
+./kms-decrypt.sh fve71roc3v3v1o7fee00 "foo=bar" `cat ciphertext.txt` | base64
 Атакуем на рассвете
 ```
-* Ура! Мы корректно расшифровали наш шифротекст
+* Ура! Мы корректно расшифровали наш шифротекст при помощи ключа KMS
