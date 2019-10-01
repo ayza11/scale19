@@ -38,7 +38,7 @@ echo "Атакуем на рассвете" > plaintext.txt
 * Изучаем содержимое файла `ciphertext.txt`, в нём содержится шифротекст в кодировке BASE64. В файле должно располагаться что-то вроде такого: `AAAAAAAAABRmdmVob29zdGt2M3FidWhpNTZsZgAAAAzXpgRC6vIcqrGaYMQAAAAbattM/9piFG8qUMed0GTgiG1OJRIJaHI1Nraw235mUCC90ISZQldXsFYugQ==`
 * Для расшифрования шифротекста выполняем следующие команды:
 ```
-./kms-decrypt.sh fve71roc3v3v1o7fee00 "foo=bar" `cat ciphertext.txt` | base64 -D
+./kms-decrypt.sh fve71roc3v3v1o7fee00 "foo=bar" `cat ciphertext.txt` | base64 --decode
 Атакуем на рассвете
 ```
 * Ура! Мы корректно расшифровали наш шифротекст при помощи ключа KMS
